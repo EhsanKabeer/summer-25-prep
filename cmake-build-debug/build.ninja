@@ -55,6 +55,12 @@ build CMakeFiles/summer_prep_25.dir/twoSum.cpp.o: CXX_COMPILER__summer_prep_25_u
   OBJECT_DIR = CMakeFiles/summer_prep_25.dir
   OBJECT_FILE_DIR = CMakeFiles/summer_prep_25.dir
 
+build CMakeFiles/summer_prep_25.dir/linkedList.cpp.o: CXX_COMPILER__summer_prep_25_unscanned_Debug /Users/eskabeer/CLionProjects/summer-prep-25/linkedList.cpp || cmake_object_order_depends_target_summer_prep_25
+  DEP_FILE = CMakeFiles/summer_prep_25.dir/linkedList.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/summer_prep_25.dir
+  OBJECT_FILE_DIR = CMakeFiles/summer_prep_25.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target summer_prep_25
@@ -63,7 +69,7 @@ build CMakeFiles/summer_prep_25.dir/twoSum.cpp.o: CXX_COMPILER__summer_prep_25_u
 #############################################
 # Link the executable summer_prep_25
 
-build summer_prep_25: CXX_EXECUTABLE_LINKER__summer_prep_25_Debug CMakeFiles/summer_prep_25.dir/twoSum.cpp.o
+build summer_prep_25: CXX_EXECUTABLE_LINKER__summer_prep_25_Debug CMakeFiles/summer_prep_25.dir/twoSum.cpp.o CMakeFiles/summer_prep_25.dir/linkedList.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk
   OBJECT_DIR = CMakeFiles/summer_prep_25.dir
   POST_BUILD = :
