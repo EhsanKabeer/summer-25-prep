@@ -18,8 +18,8 @@ private:
 
         Node(const valueType& v): val(v), next(nullptr) {}
     };
-    Node head;
-    Node tail;
+    Node* head;
+    Node* tail;
     size_t size;
 public:
     Linkedlist() : head(), tail(), size(0) {}
@@ -43,11 +43,102 @@ public:
     }
 
     void pushFront(const valueType& v) {
-        Node insertedNode(v);
-        Node* oldHead = &head;
+        Node* insertedNode = new Node(v);
+        if (this->empty()) {
+            head = insertedNode;
+            tail = head;
+        }
+        else {
+            insertedNode->next = head;
+            head = insertedNode;
+        }
+        size++;
+    }
+    void pushBack(const valueType& v) {
+        Node* insertedNode = new Node(v);
+        if (this->empty()) {
+            head = tail = insertedNode;
+        }
+        else {
+            tail->next = insertedNode;
+            tail = insertedNode;
+        }
+        size++;
+    }
 
+    void pop_front () {
+        if (empty()) return;
+        Node* newHead = head->next;
+        delete head;
+        head = newHead;
+        if (!head) tail = nullptr;
+        size--;
+    }
+    void pop_back () {
+        if (empty()) return;
+        if (head == tail) {
+            delete head;
+            head = tail = nullptr;
+            size--;
+        }
+        else {
+            Node* curr = head;
+            while (curr != tail) {
+                curr = curr->next;
+            }
+            delete tail;
+            tail = curr;
+            tail->next = nullptr;
+            size--;
+        }
+    }
+    bool remove(const valueType& value) {
+        if (empty()) {
+            return false;
+        }
+        if (head->val == value) {
+            pop_front();
+            return true;
 
+        }
+        Node* nodeRemoving = head->next;
+        auto curr = head;
+        while (nodeRemoving != nullptr) {
+            if (nodeRemoving->val == value && tail == nodeRemoving) {
+                pop_back();
+                return true;
 
+            }
+            else if (nodeRemoving->val == value) {
+                curr->next = nodeRemoving->next;
+                delete nodeRemoving;
+                size--;
+                return true;
+            }
+            curr = nodeRemoving;
+            nodeRemoving = curr->next;
+        }
+        return false;
+
+    }
+    void clear() {
+        while (!empty()) {
+            pop_front();
+        }
+    }
+
+    // lookup
+    Node* find(const valueType& value) const {
+        auto curr = head;
+        while (curr != nullptr) {
+            if (curr->val == value) {
+                return curr;
+            }
+            else {
+                curr = curr->next;
+            }
+        }
+        return nullptr;
     }
 
 
