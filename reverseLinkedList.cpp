@@ -20,11 +20,24 @@ struct ListNode {
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        if (!head) {
+            return nullptr;
+        }
+        else if (head->next == nullptr) {
+            return head;
+        }
         ListNode* prev = nullptr;
         auto curr = head;
         auto next = head->next;
-
-
+        while (curr != nullptr) {
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            if (next != nullptr) {
+                next = next->next;
+            }
+        }
+        return prev;
     }
 };
 
@@ -41,9 +54,20 @@ int main() {
     c->next = d;
     d->next = e;
 
+    ListNode* printing = head;
+    while (printing != nullptr) {
+        cout << printing->val << " ";
+        printing = printing->next;
+    }
+    cout << '\n';
+
     Solution testFunc;
     auto newHead = testFunc.reverseList(head);
-
+    printing = newHead;
+    while (printing != nullptr) {
+        cout << printing->val;
+        printing = printing->next;
+    }
 
     return 0;
 }

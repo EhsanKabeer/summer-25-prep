@@ -22,7 +22,7 @@ private:
     Node* tail;
     size_t size;
 public:
-    Linkedlist() : head(), tail(), size(0) {}
+    linkedList() : head(), tail(), size(0) {}
 
     bool empty() {
         return size == 0;
@@ -34,12 +34,12 @@ public:
     valueType& front() {
         if (this->empty()) return nullptr;
 
-        return head.val;
+        return head->val;
     }
     valueType& back() {
         if (this->empty()) return nullptr;
 
-        return tail.val;
+        return tail->val;
     }
 
     void pushFront(const valueType& v) {
