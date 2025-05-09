@@ -8,15 +8,31 @@ public:
     bool isValid(string s) {
         stack<char> tracker;
         for (auto& c : s) {
-            tracker.push(c);
+            if (c == '(' || c == '{' || c == '[') {
+                tracker.push(c);
+            }
+            else {
+                if (c == ')' && tracker.top() == '(') {
+                    tracker.pop();
+                }
+                else if (c == '}' && tracker.top() == '{') {
+                    tracker.pop();
+                }
+                else if (c == ']' && tracker.top() == '[') {
+                    tracker.pop();
+                }
+                else {
+                    return false;
+                }
+            }
         }
-
+        return true;
     }
 };
 
 int main() {
     Solution test;
-    string input = "()";
+    string input = "()[{}]";
     if (test.isValid(input)) {
         cout << "Correct solution!\n";
     }
