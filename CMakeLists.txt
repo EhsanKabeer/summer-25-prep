@@ -7,5 +7,5 @@ add_executable(summer_prep_25 #twoSum.cpp
         linkedList.cpp
         linkedList.h
 #reverseLinkedList.cpp
-validParentheses.cpp
+#validParentheses.cpp
 )
