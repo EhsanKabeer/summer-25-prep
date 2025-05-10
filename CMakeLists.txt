@@ -9,5 +9,6 @@ add_executable(summer_prep_25
     linkedList.h
     #reverseLinkedList.cpp
     #validParentheses.cpp
-    MergeTwoSortedLists.cpp
+    #MergeTwoSortedLists.cpp
+     AddTwoNums.cpp
 )
