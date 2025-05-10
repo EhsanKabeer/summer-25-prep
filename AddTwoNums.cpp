@@ -41,18 +41,45 @@ public:
             curr->next = new ListNode(sum % 10);
             curr = curr->next;
         }
+
+        if (l1 != nullptr && l2 == nullptr) {
+            while (l1 != nullptr) {
+                sum = l1->val + remainder;
+                l1 = l1->next;
+                if (sum > 9) remainder = 1;
+                else remainder = 0;
+
+                curr->next = new ListNode(sum % 10);
+                curr = curr->next;
+            }
+        }
+        else if (l1 == nullptr && l2 != nullptr) {
+            while (l2 != nullptr) {
+                sum = l2->val + remainder;
+                l2 = l2->next;
+                if (sum > 9) remainder = 1;
+                else remainder = 0;
+
+                curr->next = new ListNode(sum % 10);
+                curr = curr->next;
+            }
+        }
+        if (remainder > 0) {
+            curr->next = new ListNode(remainder);
+            curr = curr->next;
+        }
         return sumHead;
     }
 };
 
 int main() {
-    auto h1 = new ListNode(2);
-    auto b1 = new ListNode(4);
-    auto c1 = new ListNode(3);
+    auto h1 = new ListNode(9);
+    auto b1 = new ListNode(9);
+    auto c1 = new ListNode(9);
 
-    auto h2 = new ListNode(5);
-    auto b2 = new ListNode(6);
-    auto c2 = new ListNode(4);
+    auto h2 = new ListNode(9);
+    auto b2 = new ListNode(9);
+    auto c2 = new ListNode(9);
 
     h1->next = b1;
     b1->next = c1;
