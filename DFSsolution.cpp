@@ -2,6 +2,7 @@
 #include <stack>
 #include <vector>
 #include <queue>
+#include <limits>
 using namespace std;
 
 struct Node {
@@ -109,6 +110,31 @@ int treeSumBFS(Node* root) {
 }
 
 
+int treeMinRecursive(Node* root) {
+    if (root == nullptr) {
+        return numeric_limits<int>::max();
+    }
+    int leftMin = treeMinRecursive(root->left);
+    int rightMin = treeMinRecursive(root->right);
+    return min(root->val,min(leftMin,rightMin));
+}
+
+int maxPathSumRecursive(Node* root) {
+    if (root == nullptr) {
+        return numeric_limits<int>::min();
+    }
+    if (root->left == nullptr && root->right == nullptr) {
+        return root->val;
+    }
+    const int leftMax = maxPathSumRecursive(root->left);
+    const int rightMax = maxPathSumRecursive(root->right);
+
+    return root->val + (leftMax > rightMax ? leftMax : rightMax);
+
+}
+
+
+
 int main() {
     Node* root = new Node(1);
     Node* b = new Node(2);
@@ -124,7 +150,7 @@ int main() {
     c->left = f;
 
     bool val = DFSTargetRecursive(root,10);
-    cout << treeSumDFS(root) << " " << treeSumBFS(root) << endl;
+    cout << maxPathSumRecursive(root) << endl;
 
     return 0;
 }
