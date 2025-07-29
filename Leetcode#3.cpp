@@ -1,49 +1,49 @@
-#include "iostream"
-#include "string"
+#include <string>
+#include <vector>
+#include <iostream>
 using namespace std;
 
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if (s.length() <= 1) return s.length();
+        if (s.empty()) {
+            return 0;
+        }
+        //sliding window
+        int start = 0;
+        int end = 0;
+        int BiggestWindow = 1;
 
-        int longestLength = 1;
-        char* curr = &s[0];
-        char* next = &s[1];
+        vector<int> letters(128,0);
+        letters[s[end]]++;
+        end++;
 
-        int currLength = 1;
-        for (int i = 1;i < s.length();i++) {
-            if (*curr == *next) {
-                curr = next++;
-                if (currLength > longestLength) {
-                    longestLength = currLength;
+        while (end < s.size()) {
+            letters[static_cast<int>(s[end])]++;
+            if (letters[static_cast<int>(s[end])] > 1) {
+                while (letters[static_cast<int>(s[end])] > 1) {
+                    letters[static_cast<int>(s[start])]--;
+                    start++;
                 }
-                currLength = 1;
+                end++;
             }
             else {
-                currLength++;
-                curr = next++;
+                BiggestWindow = max(BiggestWindow,end - start + 1);
+                end++;
             }
-            if (next == &s.back()) {
-                if (*curr != *next) {
-                    currLength++;
-                }
-                if (currLength > longestLength) {
-                    longestLength = currLength;
-                }
-                break;
-            }
-        }
 
-        return longestLength;
-        
+
+            
+        }
+        return BiggestWindow;
     }
+
 };
 
 
 int main() {
     Solution test;
-    cout << test.lengthOfLongestSubstring("hhelillo");
+    cout << test.lengthOfLongestSubstring("dvdf");
 
     return 0;
 }
