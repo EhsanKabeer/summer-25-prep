@@ -1,3 +1,0 @@
-/Users/eskabeer/CLionProjects/summer-prep-25/cmake-build-debug/CMakeFiles/summer_prep_25.dir
-/Users/eskabeer/CLionProjects/summer-prep-25/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/eskabeer/CLionProjects/summer-prep-25/cmake-build-debug/CMakeFiles/rebuild_cache.dir
