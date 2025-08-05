@@ -1,0 +1,3 @@
+*.dSYM
+*.txt
+cmake-build-debug
